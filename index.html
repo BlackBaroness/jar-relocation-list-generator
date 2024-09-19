@@ -75,7 +75,7 @@
 
             const packages = await extractPackagesFromJar(jarFile);
             const filteredPackages = filterPackages(packages, whitelist);
-            const packagesToRelocate = getTopLevelPackage(filteredPackages).sort();
+            const packagesToRelocate = keepTopLevelPackages(filteredPackages).sort();
 
             displayOutput(packagesToRelocate);
         }
@@ -108,19 +108,19 @@
                 });
             });
         }
+	    
+        function keepTopLevelPackages(packages) {
+            const results = new Set(packages);
 
-        function getTopLevelPackage(strings) {
-            const topLevelPackages = new Set(strings);
-
-            strings.forEach(str => {
-                strings.forEach(otherStr => {
-                    if (otherStr.startsWith(str + '.') && otherStr !== str) {
-                        topLevelPackages.delete(str);
+            packages.forEach(thisPackage => {
+                packages.forEach(otherPackage => {
+                    if (otherPackage.startsWith(thisPackage + '.')) {
+                        results.delete(otherPackage);
                     }
                 });
             });
 
-            return Array.from(topLevelPackages);
+            return Array.from(results);
         }
 
         function displayOutput(packages) {
