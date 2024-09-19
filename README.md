@@ -1,7 +1,7 @@
-## This simple website allows you to generate a package list to relocate libraries inside your JAR!
+## This simple website allows you to generate a package list for relocating libraries within your JAR file!
 
-It processes everything locally, no any cloud here.
+It processes everything locally — no cloud services involved.
 
-It shows only packages containing .class files, so it is more accurate than manual list creation where you could input a more common package and get something broken in future (like you shouldn't input `com.google` if you have only Guava)
+The tool displays only packages that contain `.class` files, making it more accurate than manual list creation. This way, you avoid potential issues that can arise from inputting broader package names (for example, you shouldn't input `com.google` if you only have Guava, as `com.google` contains other libraries as well).
 
-Try this out: [blackbaroness.github.io/jar-relocation-list-generator](https://blackbaroness.github.io/jar-relocation-list-generator)
+Give it a try: [blackbaroness.github.io/jar-relocation-list-generator](https://blackbaroness.github.io/jar-relocation-list-generator)
