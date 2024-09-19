@@ -103,6 +103,8 @@
 
         function filterPackages(packages, whitelist) {
             return packages.filter(pkg => {
+                return !pkg.startsWith('META-INF.'));
+            }).filter(pkg => {
                 return !whitelist.some(whitelisted => {
                     return pkg === whitelisted || pkg.startsWith(whitelisted + '.');
                 });
